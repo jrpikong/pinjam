@@ -39,4 +39,12 @@ class Transaction extends Model
         }
         return true;
     }
+
+
+    /*RELATIONS*/
+
+    public function products ()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
 }

@@ -9,16 +9,20 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     private $products;
+    private $transactions;
 
     public function __construct ()
     {
         $this->products = Product::all();
+        $this->transactions = Transaction::with('products')->get();
     }
 
     public function order (Request $request)
     {
         $products = $this->products;
-        return view('orderForm', compact('products'));
+        $transactions = $this->transactions;
+        $listProducts = Product::paginate(15);
+        return view('orderForm', compact('products','transactions','listProducts'));
     }
 
     public function orderPost (Request $request)

@@ -54,6 +54,55 @@
 
                     </form>
                 </div>
+                @if($transactions)
+                <div class="card-header">List Order</div>
+                <div class="card-body">
+                    <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Qty</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($transactions as $i =>$transaction)
+                        <tr>
+                            <th scope="row">{{$i + 1}}</th>
+                            <td>{{$transaction->products->name}}</td>
+                            <td>{{$transaction->qty}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    </table>
+                </div>
+                @endif
+
+                @if($listProducts)
+                    <div class="card-header">List Producs</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Qty</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($listProducts as $i =>$listProduct)
+                                <tr>
+                                    <th scope="row">{{$i + 1}}</th>
+                                    <td>{{$listProduct->name}}</td>
+                                    <td>{{$listProduct->price}}</td>
+                                    <td>{{$listProduct->stock}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        {{ $listProducts->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
