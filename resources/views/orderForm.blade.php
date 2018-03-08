@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Laravel | Test Pinjam.co.id</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -31,7 +31,7 @@
                                 <label for="product">Product Name </label>
                             </div>
                             <div class="col-sm-8">
-                                <select name="product" class="form-group">
+                                <select name="product" class="form-control">
                                     @if(!empty($products))
                                         @foreach($products as $product)
                                             <option value="{{$product->id}}">{{$product->name}}</option>
@@ -45,7 +45,7 @@
                                 <label for="qty">QTY</label>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" name="qty" placeholder="1" class="form-group" value="1" required>
+                                <input type="text" name="qty" placeholder="1" class="form-control" value="1" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -54,7 +54,7 @@
 
                     </form>
                 </div>
-                @if($transactions)
+                @if(!$transactions->isEmpty())
                 <div class="card-header">List Order</div>
                 <div class="card-body">
                     <table class="table">
@@ -63,6 +63,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Qty</th>
+                        <th scope="col">Date</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,7 @@
                             <th scope="row">{{$i + 1}}</th>
                             <td>{{$transaction->products->name}}</td>
                             <td>{{$transaction->qty}}</td>
+                            <td>{{date('l, d M Y H:i A', strtotime($transaction->created_at))}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -78,8 +80,8 @@
                 </div>
                 @endif
 
-                @if($listProducts)
-                    <div class="card-header">List Producs</div>
+                @if(!$listProducts->isEmpty())
+                <div class="card-header">List Products</div>
                     <div class="card-body">
                         <table class="table">
                             <thead>
