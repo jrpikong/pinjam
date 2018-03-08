@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'OrderController@order');
+Route::post('/orderPost', 'OrderController@orderPost');
 
 
 
