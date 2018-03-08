@@ -86,7 +86,8 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Product Name</th>
-                                <th scope="col">Qty</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -94,7 +95,7 @@
                                 <tr>
                                     <th scope="row">{{$i + 1}}</th>
                                     <td>{{$listProduct->name}}</td>
-                                    <td>{{$listProduct->price}}</td>
+                                    <td>Rp {{number_format($listProduct->price)}}</td>
                                     <td>{{$listProduct->stock}}</td>
                                 </tr>
                             @endforeach
